@@ -1,7 +1,7 @@
-import time
+import datetime
 import requests
 import psycopg2
-
+import time
 # Connect to the database
 conn = psycopg2.connect(
     host="localhost",
@@ -17,7 +17,7 @@ cursor.execute(
     CREATE TABLE IF NOT EXISTS crypto_prices (
         crypto_name VARCHAR(255),
         price REAL,
-        timestamp NUMERIC
+        timestamp TIMESTAMP
     );
     """
 )
@@ -33,7 +33,7 @@ while True:
     price = data[crypto_name]['usd']
     
     # Get the current time
-    timestamp = time.time()
+    timestamp = datetime.datetime.now()
     
     # Insert the data into the database
     cursor.execute("INSERT INTO crypto_prices VALUES (%s, %s, %s)", (crypto_name, price, timestamp))
