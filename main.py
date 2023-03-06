@@ -6,7 +6,7 @@ import time
 conn = psycopg2.connect(
     host="localhost",
     user="postgres",
-    password="adil011106",
+    password="8888",
     dbname="Info"
 )
 cursor = conn.cursor()
